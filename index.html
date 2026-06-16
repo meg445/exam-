@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Junior School Results Analysis</title>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+  
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <div class="header">
+    <h1>Junior School Results Analysis</h1>
+    <p>Eagle Stream · End of Term Assessment</p>
+  </div>
+
+  <div class="stats-grid" id="stats-grid"></div>
+
+  <div class="section-title">Subject Performance Averages</div>
+  <div class="chart-wrap">
+    <canvas id="subjectChart"></canvas>
+  </div>
+
+  <div class="toolbar no-print">
+    <select id="view-grade-filter" onchange="changeGradeFilter(this.value)">
+      <option value="All">All Grades</option>
+      <option value="7">Grade 7</option>
+      <option value="8" selected>Grade 8</option>
+      <option value="9">Grade 9</option>
+    </select>
+
+    <button onclick="toggleAddForm()">+ Add learner</button>
+    <button onclick="resetData()">Reset</button>
+    <div class="sep"></div>
+    <span class="save-status" id="save-status"><span class="save-dot"></span> Saved</span>
+    
+    <button class="excel" onclick="exportExcel()">Export Excel</button>
+    <button class="primary" onclick="window.print()">Print results</button>
+  </div>
+
+  <div class="add-form no-print" id="add-form" style="display:none">
+    <h3>Add a learner</h3>
+    <div class="form-row">
+      <input id="f-adm" placeholder="Adm No." />
+      <input id="f-name" placeholder="Full name" />
+      <select id="f-gender"><option>Female</option><option>Male</option></select>
+      <select id="f-grade">
+        <option value="7">Grade 7</option>
+        <option value="8" selected>Grade 8</option>
+        <option value="9">Grade 9</option>
+      </select>
+    </div>
+    <div class="marks-grid" id="marks-inputs"></div>
+    <div class="form-actions">
+      <button class="save" onclick="addLearner()">Save learner</button>
+      <button onclick="toggleAddForm()">Cancel</button>
+    </div>
+  </div>
+
+  <div class="section-title">Compiled merit list</div>
+  <div class="table-wrap" id="table-wrap"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
+
